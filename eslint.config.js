@@ -10,6 +10,17 @@ export default tseslint.config([
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
+      // // Recommended type-checked rules
+      tseslint.configs.recommendedTypeChecked,
+      // // For stricter rules, use:
+      tseslint.configs.strictTypeChecked,
+      // // For stylistic rules, use:
+      // tseslint.configs.stylisticTypeChecked,
+
+      // React and React DOM rules
+      // reactX.configs["recommended-typescript"],
+      // reactDom.configs.recommended,
+
       js.configs.recommended,
       tseslint.configs.recommended,
       reactHooks.configs['recommended-latest'],
@@ -18,6 +29,10 @@ export default tseslint.config([
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
+      parserOptions: {
+        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
+        tsconfigRootDir: import.meta.dirname,
+      },
     },
   },
 ])
