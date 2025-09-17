@@ -1,20 +1,64 @@
 import { useState } from "react";
 import "./App.css";
 import "./styles/theme.css";
+import { ThemeProvider, UseTheme } from "./themes/ThemeProvider";
 
 import STWaterColorLeaves from "../public/STWaterColorLeaves.svg";
 import ThemeSwitcher from "./themes/ThemeSwitcher";
 import PageContainer from "./themes/PageContainer";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
-import { UseTheme } from "./themes/ThemeProvider";
 import UIShowcase from "./pages/UIShowcase";
+import ThemeRibbon from "./themes/ThemeRibbon";
+import type { ITheme } from "./themes/ITheme";
+
+// Import all themes from the options folder
+import { LightTheme } from "./themes/options/LightTheme";
+import { DarkTheme } from "./themes/options/DarkTheme";
+import { BlueTheme } from "./themes/options/BlueTheme";
+import { BrownTheme } from "./themes/options/BrownTheme";
+import { PurpleTheme } from "./themes/options/PurpleTheme";
+import { YellowGreenTheme } from "./themes/options/YellowGreenTheme";
+import { SlateTheme } from "./themes/options/SlateTheme";
+import { TealTheme } from "./themes/options/TealTheme";
+import { GreenTheme } from "./themes/options/GreenTheme";
+import { RedTheme } from "./themes/options/RedTheme";
+import { OrangeTheme } from "./themes/options/OrangeTheme";
+import { IndigoTheme } from "./themes/options/IndigoTheme";
+import { GrayTheme } from "./themes/options/GrayTheme";
+import { GoldTheme } from "./themes/options/GoldTheme";
+import { AquaTheme } from "./themes/options/AquaTheme";
+import { OliveTheme } from "./themes/options/OliveTheme";
+import { SteelTheme } from "./themes/options/SteelTheme";
+
+// const themes = ["Light", "Dark", "Solarized"]; // Replace with your actual theme names
+const themes: ITheme[] = [
+  LightTheme,
+  DarkTheme,
+  BlueTheme,
+  BrownTheme,
+  PurpleTheme,
+  YellowGreenTheme,
+  SlateTheme,
+  TealTheme,
+  GreenTheme,
+  RedTheme,
+  OrangeTheme,
+  IndigoTheme,
+  GrayTheme,
+  GoldTheme,
+  AquaTheme,
+  OliveTheme,
+  SteelTheme,
+];
 
 function App() {
   const [count, setCount] = useState(0);
-  const { theme } = UseTheme();
+  // Use the first theme as default
+  const { theme, setTheme } = UseTheme();
 
   return (
     <PageContainer id="root">
+      <ThemeRibbon themes={themes} selectedTheme={theme} onSelect={setTheme} />
       <StyledThemeProvider theme={theme}>
         <ThemeSwitcher />
         <span className="inline-flex">
