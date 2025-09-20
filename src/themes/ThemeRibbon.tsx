@@ -19,6 +19,11 @@ export default function ThemeRibbon({
           className={`theme-ribbon-btn${
             selectedTheme.name === theme.name ? " selected" : ""
           }`}
+          style={{
+            background: theme.backgroundColor || "#eee", // Use theme's background color or default to light gray
+            color: theme.textColor || "#222", // Use theme's text color or default to black
+            border: `2px solid ${theme.borderColor || "#ccc"}`, // Use theme's border or default to none
+          }}
           onClick={() => onSelect(theme)}
         >
           {theme.name}
