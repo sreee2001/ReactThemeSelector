@@ -189,6 +189,13 @@
   transition: background 0.2s;
 }
 
+.theme-ribbon,
+.theme-ribbon-btn {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
 .theme-ribbon-btn.selected {
   background: #007bff;
   color: #fff;
